@@ -106,10 +106,12 @@
         .center-content {
             text-align: center;
             color: white;
+			padding-top: 10%;
         }
 
         .center-logo {
             height: 10vh;
+			
         }
 
         .center-workshop-image {
@@ -141,6 +143,7 @@
             box-shadow: 0 2% 5% rgba(0, 0, 0, 0.2);
             width: 30%;
             min-width: 280px;
+			margin-top: 1%;
         }
 
         .card img {
@@ -199,7 +202,7 @@
         }
 
         .ambassador img, .patent img {
-        
+           
             max-width: 20%;
             min-width: 100px;
             height: auto;
@@ -273,9 +276,7 @@
     <!-- Tło strony -->
     <div class="background-image" id="home">
         <div class="center-content">
-		<p>
-		
-            <img src="logo1.png" alt="Logotyp ADYKI WHEEL" class="center-logo">
+		<img src="logo1.png" alt="Logotyp ADYKI WHEEL" class="center-logo">
 			<p>
 			
             <img src="warsztat1.jpg" alt="Zdjęcie warsztatu" class="center-workshop-image">
@@ -427,10 +428,29 @@
 
     <!-- Skrypt do rozwijania menu -->
     <script>
-        function toggleMenu() {
-            const menu = document.getElementById('menu');
-            menu.classList.toggle('active');
-        }
-    </script>
+    function toggleMenu() {
+        const menu = document.getElementById('menu');
+        menu.classList.toggle('active');
+    }
+
+    // Zwijanie menu po kliknięciu w odnośnik
+    document.addEventListener('DOMContentLoaded', () => {
+        const menuLinks = document.querySelectorAll('#menu ul li a');
+        const menu = document.getElementById('menu');
+
+        menuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (menu.classList.contains('active')) {
+                    menu.classList.remove('active');
+                }
+            });
+        });
+    });
+</script>
+
+
+
+
+
 </body>
 </html>
