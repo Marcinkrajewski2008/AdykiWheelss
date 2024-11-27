@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADYKI WHEEL - Manufaktura Kół Karbonowych</title>
+    <style>
+        /* Ogólne style */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Nagłówek i menu */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1% 5%;
+            z-index: 1000;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            height: 8vh;
+            margin-right: 5%;
+        }
+
+        .brand-name {
+            font-size: 2vh;
+            font-weight: bold;
+        }
+
+        .menu-toggle {
+            font-size: 2.5vh;
+            cursor: pointer;
+            display: none;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin: 0 2%;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 2vh;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            nav ul {
+                display: none;
+                flex-direction: column;
+                background: rgba(0, 0, 0, 0.9);
+                position: absolute;
+                top: 6%;
+                left: 0;
+                right: 0;
+                padding: 2%;
+            }
+
+            nav ul li {
+                margin: 2% 0;
+                text-align: center;
+            }
+
+            nav.active ul {
+                display: flex;
+            }
+        }
+
+        /* Tło strony */
+        .background-image {
+            background: url('kola zdj2.jpg') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Treść na środku */
+        .center-content {
+            text-align: center;
+            color: white;
+        }
+
+        .center-logo {
+            height: 10vh;
+        }
+
+        .center-workshop-image {
+            max-width: 60%;
+            height: auto;
+            margin-top: 5%;
+            border: 2px solid white;
+            border-radius: 10px;
+        }
+
+        /* Sekcja Oferta */
+        #offer {
+            padding: 5% 10%;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+
+        .grid {
+            display: flex;
+            justify-content: center;
+            gap: 5%;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background: white;
+            padding: 5%;
+            border-radius: 10px;
+            box-shadow: 0 2% 5% rgba(0, 0, 0, 0.2);
+            width: 30%;
+            min-width: 280px;
+        }
+
+        .card img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .card h3 {
+            margin-top: 5%;
+            font-size: 2.2vh;
+        }
+
+        .card ul {
+            padding: 0;
+            list-style: none;
+            text-align: left;
+        }
+
+        .card ul li {
+            margin-bottom: 1%;
+            font-size: 1.8vh;
+        }
+
+        /* Sekcja O Nas */
+        #about {
+            padding: 5% 10%;
+            background-color: #fff;
+            text-align: center;
+        }
+
+        #about p {
+            font-size: 2vh;
+        }
+
+
+
+/* Sekcja Ambasadorzy */
+        #ambassadors, #patent {
+            padding: 5% 10%;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+
+        .ambassador, .patent {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2%;
+            margin-bottom: 5%;
+            border: 2px solid #ddd;
+            padding: 2%;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0 2% 5% rgba(0, 0, 0, 0.1);
+        }
+
+        .ambassador img, .patent img {
+            border-radius: 50%;
+            max-width: 20%;
+            min-width: 100px;
+            height: auto;
+        }
+
+        .ambassador-content, .patent-content {
+            max-width: 75%;
+            text-align: left;
+        }
+
+        .ambassador h3, .patent h3 {
+            margin: 0 0 1%;
+            font-size: 2vh;
+        }
+
+        .ambassador p, .patent p {
+            font-size: 1.8vh;
+            margin: 0;
+        }
+
+
+
+
+        /* Sekcja Kontakt */
+        #contact {
+            padding: 5% 10%;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+
+        #contact p {
+            font-size: 2vh;
+        }
+
+        /* Responsywny tekst */
+        h2 {
+            font-size: 3vh;
+            margin-bottom: 2%;
+        }
+
+        /* Przycisk do rozwijania menu */
+        .menu-toggle {
+            color: white;
+            border: none;
+            background: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Stały górny margines -->
+    <header>
+        <div class="logo-container">
+            <img src="logo2.jpg" alt="Logotyp ADYKI WHEEL" class="logo">
+            <span class="brand-name">ADYKI WHEEL</span>
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+        </div>
+        <nav id="menu">
+            <ul>
+                <li><a href="#home">Strona Główna</a></li>
+                <li><a href="#offer">Oferta</a></li>
+                <li><a href="#about">O Nas</a></li>
+				<li><a href="#ambassadors">Ambasadorzy</a></li>
+                <li><a href="#patent">Patent</a></li>
+                <li><a href="#contact">Kontakt</a></li>
+                <!-- Miejsce na dodatkowe sekcje -->
+                <!-- <li><a href="#custom">Dodatkowa Sekcja</a></li> -->
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Tło strony -->
+    <div class="background-image" id="home">
+        <div class="center-content">
+		<p>
+		
+            <img src="logo1.png" alt="Logotyp ADYKI WHEEL" class="center-logo">
+			<p>
+			
+            <img src="warsztat1.jpg" alt="Zdjęcie warsztatu" class="center-workshop-image">
+        </div>
+    </div>
+
+    <!-- Sekcja Oferta -->
+    <section id="offer">
+        <h2>Oferta Kół Karbonowych</h2>
+        <div class="grid">
+            <!-- Kafelek Koła 1 -->
+            <div class="card">
+                <img src="kolo1.jpg" alt="ADYKI Wersja Podstawowa">
+                <h3>ADYKI WERSJA PODSTAWOWA</h3>
+                <ul>
+                    <li>Waga: 1500g</li>
+                    <li>Materiał: Karbon</li>
+                    <li>Linia Produktu: Podstawowa</li>
+                    <li>Cena: 2500 PLN</li>
+                    <li>Rozmiar Osi: 12x100 12x142</li>
+                    <li>Dostępne Wysokości: 30mm, 40mm, 50mm</li>
+                    <li>Dostępność: Na zamówienie</li>
+                </ul>
+            </div>
+            <!-- Kafelek Koła 2 -->
+            <div class="card">
+                <img src="kolo2.jpg" alt="ADYKI SUPER LIGHT">
+                <h3>ADYKI SUPER LIGHT</h3>
+                <ul>
+                    <li>Waga: 1300g</li>
+                    <li>Materiał: Karbon</li>
+                    <li>Linia Produktu: SL</li>
+                    <li>Cena: 2800 PLN</li>
+                    <li>Rozmiar Osi: 12x100 12x142</li>
+                    <li>Dostępne Wysokości: 30mm, 40mm, 50mm</li>
+                    <li>Dostępność: Na zamówienie</li>
+                </ul>
+            </div>
+			
+			
+			<!-- Kafelek Koła 3 -->
+            <div class="card">
+                <img src="kolo3.jpg" alt="ADYKI SUPER LIGHT PRO">
+                <h3>ADYKI SUPER LIGHT PRO</h3>
+                <ul>
+                    <li>Waga: 1200g</li>
+                    <li>Materiał: Karbon</li>
+                    <li>Linia Produktu: SL PRO</li>
+                    <li>Cena: 3000 PLN</li>
+                    <li>Rozmiar Osi: 12x100 12x142</li>
+                    <li>Dostępne Wysokości: 30mm, 40mm, 50mm</li>
+                    <li>Dostępność: Na zamówienie</li>
+                </ul>
+            </div>
+        
+		
+		<!-- Kafelek Koła 4 -->
+            <div class="card">
+                <img src="kolo4.jpg" alt="ADYKI PRO+">
+                <h3>ADYKI PRO+</h3>
+                <ul>
+                    <li>Waga: 1050g</li>
+                    <li>Materiał: Karbon</li>
+                    <li>Linia Produktu: PRO+</li>
+                    <li>Cena: 4000 PLN</li>
+                    <li>Rozmiar Osi: 12x100 12x142</li>
+                    <li>Dostępne Wysokości: 30mm, 40mm, 50mm</li>
+                    <li>Dostępność: W fazie testów</li>
+                </ul>
+            </div>
+        </div>
+		</div>
+		
+		
+		
+        <!-- Miejsce na dodatkowe kafelki -->
+        <!-- <div class="card">Dodaj kolejny model koła tutaj</div> -->
+    </section>
+
+   
+
+ <!-- Nowa sekcja Ambasadorzy -->
+    <section id="ambassadors">
+        <h2>Ambasadorzy</h2>
+        <div class="ambassador">
+            <img src="ambasador1.jpg" alt="Zdjęcie Ambasadora">
+            <div class="ambassador-content">
+                <h3>Dawid Frankowiak</h3>
+                <p>Team: Victoria w Jarocinie</p>
+                <p>Jan testuje nasze produkty od 2024 roku. W swoich osiągnięciach ma wiele sukcesów w wyścigach Cyclocross.</p>
+            </div>
+        </div>
+
+        <div class="ambassador">
+            <img src="ambasador2.jpg" alt="Zdjęcie Ambasadora">
+            <div class="ambassador-content">
+                <h3>Oliwia Kępa</h3>
+                <p>Team: Grudziądz</p>
+                <p>Jan testuje nasze produkty od 2024 roku. W swoich osiągnięciach ma wiele sukcesów w wyścigach Szosowych.</p>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+ <!-- Nowa sekcja Patent -->
+    <section id="patent">
+        <h2>Patent</h2>
+        <div class="patent">
+            <img src="patent1.png" alt="Zdjęcie Patentu">
+            <div class="patent-content">
+                <h3>ADYKI Fiber Core Technology</h3>
+                <p>Unikalna technologia laminowania włókien karbonowych, zapewniająca wyjątkową lekkość i wytrzymałość piast.</p>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+ <!-- Sekcja O Nas -->
+    <section id="about">
+        <h2>O Nas</h2>
+        <p>Manufaktura kół karbonowych to miejsce, gdzie pasja do innowacji łączy się z precyzją rzemiosła. Specjalizuje się w produkcji wysokiej jakości kół wykonanych z włókna węglowego, które zapewniają wyjątkową lekkość, wytrzymałość i wydajność. Każde koło powstaje z dbałością o najmniejsze szczegóły – od projektu, przez proces laminowania, aż po precyzyjne wykończenie. W manufakturze wykorzystuje się najnowsze technologie oraz materiały klasy premium, a każdy etap produkcji jest starannie kontrolowany. 
+		<P>Dzięki temu powstają produkty, które spełniają oczekiwania najbardziej wymagających klientów, od profesjonalnych kolarzy po entuzjastów sportów wyczynowych.</p>
+        <!-- Dodaj więcej informacji w tym miejscu -->
+    </section>
+
+
+
+
+
+
+
+
+    <!-- Sekcja Kontakt -->
+    <section id="contact">
+        <h2>Kontakt</h2>
+        <p>ADYKI WHEEL     adykiwheel@wp.pl      123 123 123         Adrian Gorwa     Instagram: @adykiwheel</p>
+    </section>
+
+    <!-- Skrypt do rozwijania menu -->
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('menu');
+            menu.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
